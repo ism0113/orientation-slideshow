@@ -268,53 +268,182 @@ html, body {
   font-size: 10px; color: #3A5A78;
 }
 .s3-bottombar { height: 8px; background: #C8DDF0; flex-shrink: 0; }
+
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE  (≤768px)
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  #slideshow {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  /* Slide pages: stacked, only active shown */
+  .slide-page {
+    position: relative;
+    display: none;
+    opacity: 1;
+    pointer-events: auto;
+    height: auto;
+  }
+  .slide-page.active { display: block; }
+
+  /* Slide frame: full-width, auto-height, no transform scaling */
+  .slide-frame {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* ── Nav UI ── */
+  #nav-dots { bottom: 10px; gap: 8px; }
+  .dot { width: 8px; height: 8px; }
+  #btn-prev { left: 8px; }
+  #btn-next { right: 8px; }
+  #slide-counter { bottom: 10px; right: 12px; font-size: 11px; }
+
+  /* ── SLIDE 1 ── */
+  #s1 { padding: 16px 16px 0 16px; }
+  .s1-title { font-size: 17px; padding: 6px 0 10px; }
+  .s1-intro { font-size: 13px; }
+  .s1-section-heading { font-size: 13px; }
+  .s1-body { font-size: 12px; }
+  .s1-reward-strong { font-size: 15px; }
+  .s1-highlight { font-size: 12px; padding: 10px 12px; }
+  .s1-notes, .s1-final { font-size: 12px; }
+  .s1-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin: 0 -16px;
+    padding: 12px 16px;
+  }
+  .s1-footer-label { font-size: 12px; margin-right: 0; }
+  .s1-footer-text { font-size: 11px; line-height: 1.6; }
+
+  /* ── SLIDE 2 ── */
+  .s2-header-band {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+  .s2-title { font-size: 18px; }
+  .s2-counselor-box { font-size: 13px; min-width: unset; width: 100%; height: auto; padding: 8px 12px; }
+
+  /* STEP cards: vertical stack */
+  .s2-steps-row {
+    flex-direction: column;
+    padding: 12px 16px 0;
+    gap: 0;
+  }
+  /* step-card: row wrap으로 QR + 버튼 가로 배치 */
+  .step-card {
+    min-height: unset;
+    flex-flow: row wrap;
+    align-items: stretch;
+    padding-bottom: 16px;
+  }
+  .step-card-header { width: 100%; height: auto; padding: 10px 0; font-size: 12px; }
+  .step-title-row { font-size: 15px; padding: 10px 8px; width: calc(100% - 20px); }
+  .step-qr {
+    width: 130px; height: 130px;
+    margin: 12px 0 0 12px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    align-self: flex-start;
+  }
+  a.step-btn {
+    flex: 1;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 12px 0 12px;
+    min-height: 130px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    padding: 0 8px;
+    word-break: keep-all;
+  }
+
+  /* Arrow: horizontal → vertical (↓) */
+  .step-arrow {
+    width: 100%;
+    height: 20px;
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 0;
+    font-size: 14px;
+    padding: 2px 0;
+  }
+
+  /* Reward card: full width */
+  .reward-card {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+    min-height: unset;
+  }
+  .reward-header { border-radius: 9px 9px 0 0; }
+  .reward-amount { font-size: 22px; }
+  .reward-sub { font-size: 12px; }
+  .reward-list { font-size: 11px; }
+
+  .s2-timing {
+    margin: 10px 16px 0;
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .s2-bottom {
+    flex-direction: column;
+    padding: 10px 16px 16px;
+    gap: 8px;
+  }
+  .privacy-head { font-size: 12px; }
+  .privacy-list { font-size: 12px; }
+  .contact-card { flex-direction: column; min-width: unset; }
+  .contact-title { font-size: 12px; }
+  .contact-name-strong { font-size: 14px; }
+  .hub-qr { display: none; }
+
+  /* ── SLIDE 3 ── */
+  .s3-body { padding: 40px 20px 30px; }
+  .s3-title { font-size: 22px; }
+  .s3-line { width: 80px; }
+  .s3-footer-band {
+    height: auto;
+    padding: 14px 20px;
+    font-size: 11px;
+    line-height: 1.7;
+    flex-wrap: wrap;
+  }
+}
 </style>
 </head>
 <body>
 
 <div id="slideshow">
 
-  <!-- SLIDE 1 -->
-  <div class="slide-page active" data-index="0">
-    <div class="slide-frame" id="s1">
-      <div class="s1-title">연구 참여자 모집 공고</div>
-      <div class="s1-topline"></div>
-      <p class="s1-intro">안녕하세요. 한양대학교 대학원 다문화교육학과 박사과정생 홍은실입니다. 본 연구자는 박사학위논문 연구를 위하여 다음과 같이 연구 참여자를 모집하고자 합니다.</p>
-      <div class="s1-section-heading">1.&nbsp; 연구목적</div>
-      <div class="s1-body">상담 과정에서 상담자와의 관계 경험이 시간의 흐름에 따라 어떻게 변화하는지를 살펴보기 위한 연구입니다.</div>
-      <div class="s1-section-heading">2.&nbsp; 연구 참여 대상</div>
-      <ul class="s1-body">
-        <li>만 18세 이상의 성인 중 최소 8회기 이상 상담이 예정된 분</li>
-        <li>상담 신청 이유에 관계, 정서, 심리적 어려움, 자기이해 또는 자기개념이 포함되는 분</li>
-      </ul>
-      <div class="s1-section-heading">3.&nbsp; 연구 참여 내용 및 실행 절차</div>
-      <ul class="s1-body">
-        <li>상담 과정 중 총 3회 설문 참여 (상담 1회기, 4회기, 8회기 종료 이후)</li>
-        <li>온라인 설문, 회당 약 10분 소요</li>
-      </ul>
-      <div class="s1-section-heading">4.&nbsp; 참여기간 및 사례</div>
-      <ul class="s1-body">
-        <li>전체 참여 기간: 약 2~3개월 (상담 1회기 ~ 8회기)</li>
-        <li>3회 설문 참여 완료 후 감사의 뜻으로 소정의 사례비가 지급됩니다.&nbsp;<span class="s1-reward-strong">( 사례비 :  ₩40,000)</span></li>
-      </ul>
-      <div class="s1-highlight">🔒&nbsp; 설문 내용은 상담자에게 일절 공유되지 않으며, 오직 연구자만 확인합니다.</div>
-      <div class="s1-separator"></div>
-      <p class="s1-notes">※ 참여 과정에서 자신의 감정, 상담관계에 대해 응답하며 일시적인 심리적 부담이나 설문 피로감이 발생할 수 있습니다.</p>
-      <p class="s1-notes">※ 참여 여부는 자유롭게 결정하실 수 있으며, 언제든지 철회하실 수 있습니다.</p>
-      <p class="s1-final">본 연구는 상담 경험을 보다 깊이 이해하고, 향후 상담의 질을 높이기 위한 기초 자료로 활용됩니다.</p>
-      <div class="s1-footer">
-        <span class="s1-footer-label">※ 문의 및 신청&nbsp;&nbsp;연구책임자:</span>
-        <span class="s1-footer-text">박사과정생 홍은실  |  ganada.hong@gmail.com  |  한양대학교 일반대학원 다문화교육학과  |  지도교수 하정희</span>
-      </div>
-    </div>
-  </div>
-
   <!-- SLIDE 2 -->
-  <div class="slide-page" data-index="1">
+  <div class="slide-page active" data-index="0">
     <div class="slide-frame" id="s2">
       <div class="s2-header-band">
         <div class="s2-title">📋&nbsp; 내담자 안내 (설문 참여 안내)</div>
-        <div class="s2-counselor-box">상담자명 :</div>
       </div>
       <div class="s2-steps-row">
         <div class="step-card">
@@ -379,40 +508,14 @@ html, body {
     </div>
   </div>
 
-  <!-- SLIDE 3 -->
-  <div class="slide-page" data-index="2">
-    <div class="slide-frame" id="s3">
-      <div class="s3-topbar"></div>
-      <div class="s3-body">
-        <div class="s3-title">연구에 참여해 주셔서<br>진심으로 감사드립니다</div>
-        <div class="s3-divider">
-          <div class="s3-line"></div>
-          <div class="s3-diamond"></div>
-          <div class="s3-line"></div>
-        </div>
-      </div>
-      <div class="s3-footer-band">
-        연구책임자: 홍은실  |  한양대학교 대학원 다문화교육학과  |  ganada.hong@gmail.com  |  지도교수: 하정희
-      </div>
-      <div class="s3-bottombar"></div>
-    </div>
-  </div>
 
 </div>
 
 <!-- Nav dots -->
-<div id="nav-dots">
-  <div class="dot active" data-target="0"></div>
-  <div class="dot" data-target="1"></div>
-  <div class="dot" data-target="2"></div>
-</div>
 
-<!-- Arrows -->
-<button class="nav-btn" id="btn-prev">&#8249;</button>
-<button class="nav-btn" id="btn-next">&#8250;</button>
 
 <!-- Slide counter -->
-<div id="slide-counter">1 / 3</div>
+<div id="slide-counter">1 / 1</div>
 
 <script>
 const SLIDE_W = 960, SLIDE_H = 540;
@@ -421,7 +524,15 @@ const pages = document.querySelectorAll('.slide-page');
 const dots = document.querySelectorAll('.dot');
 const counter = document.getElementById('slide-counter');
 
+function isMobile() { return window.innerWidth <= 768; }
+
 function scaleSlides() {
+  if (isMobile()) {
+    document.querySelectorAll('.slide-frame').forEach(el => {
+      el.style.transform = '';
+    });
+    return;
+  }
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   // Leave some room for nav UI (dots at bottom ~50px)
@@ -461,8 +572,15 @@ document.addEventListener('touchend', e => {
   if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
 });
 
-window.addEventListener('resize', scaleSlides);
+function updateArrows() {
+  document.querySelectorAll('.step-arrow').forEach(el => {
+    el.textContent = isMobile() ? '▼' : '▶';
+  });
+}
+
+window.addEventListener('resize', () => { scaleSlides(); updateArrows(); });
 scaleSlides();
+updateArrows();
 </script>
 </body>
 </html>
