@@ -173,6 +173,147 @@ html, body {
 .contact-name { font-size: 12px; font-weight: 700; color: #2C3E50; }
 .contact-dept { font-size: 7.5px; color: #5D7A8A; line-height: 1.55; }
 .contact-email { font-size: 9px; font-weight: 700; color: #1565C0; }
+
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE  (≤768px)
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  #slideshow {
+    height: auto;
+    min-height: 100vh;
+    display: block;
+  }
+
+  .slide-frame {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    box-shadow: none;
+    overflow: visible;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .blue-header {
+    position: relative;
+    height: auto;
+    padding: 14px 16px;
+  }
+  .blue-header-title { font-size: 16px; }
+
+  /* ── Steps: 세로 배치 ── */
+  .steps-row {
+    position: relative;
+    top: auto; bottom: auto; left: auto; right: auto;
+    flex-direction: column;
+    padding: 10px 12px 0;
+    gap: 0;
+  }
+
+  .step-arrow {
+    width: 100%;
+    height: 24px;
+    padding-top: 0;
+    align-self: stretch;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* Step 1 (내담자 모집) */
+  .step0 { min-height: unset; }
+  .step0-inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .recruit-btn { background: #B8D0E8; color: #2C5F8A; font-size: 13px; padding: 12px 10px; }
+  .max-btn { background: #C8DDF0; color: #2C5F8A; font-size: 13px; padding: 12px 10px; }
+
+  /* Step 2~4: row wrap으로 QR + 버튼 가로 배치 */
+  .step {
+    flex-flow: row wrap;
+    align-items: stretch;
+    padding-bottom: 10px;
+    min-height: unset;
+  }
+  .step-hdr { width: 100%; height: auto; padding: 10px 0; font-size: 12px; background: #C8DDF0; color: #2C5F8A; }
+  .step-title {
+    font-size: 20px;
+    font-weight: 900;
+    width: calc(100% - 20px);
+    margin: 8px 10px 4px;
+    padding: 12px 8px;
+    background: #1565C0;
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+  }
+  .qr-box {
+    width: 120px; height: 120px;
+    margin: 10px 0 0 12px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  a.survey-btn {
+    flex: 1;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 10px 12px 0 12px;
+    min-height: 120px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    padding: 0 8px;
+    word-break: keep-all;
+    background: #B3D4F0;
+    color: #1A5276;
+    border: 1.2px solid #4A90C8;
+  }
+  .client-btn {
+    width: calc(100% - 20px);
+    font-size: 12px;
+    margin: 8px 10px 0 10px;
+    padding: 10px 0;
+  }
+  .note-text { font-size: 10px; width: 100%; }
+
+  /* ── Timing bar ── */
+  .timing-bar {
+    position: relative;
+    left: auto; right: auto; bottom: auto;
+    margin: 12px 12px 0;
+    font-size: 11px;
+    line-height: 1.8;
+    text-align: left;
+    padding: 10px 14px;
+  }
+
+  /* ── Bottom row ── */
+  .bottom-row {
+    position: relative;
+    bottom: auto; left: auto; right: auto;
+    height: auto;
+    flex-direction: column;
+    padding: 12px 12px 20px;
+    gap: 10px;
+  }
+  .reward-box { padding: 12px 14px; }
+  .reward-head { font-size: 13px; }
+  .reward-list { font-size: 11px; }
+  .contact-box { width: 100%; }
+  .contact-title { font-size: 12px; }
+  .contact-name { font-size: 14px; }
+}
 </style>
 </head>
 <body>
@@ -267,12 +408,27 @@ html, body {
 
 <script>
 const SLIDE_W = 960, SLIDE_H = 540;
+
+function isMobile() { return window.innerWidth <= 768; }
+
 function scaleSlide() {
+  if (isMobile()) {
+    document.querySelector('.slide-frame').style.transform = '';
+    return;
+  }
   const scale = Math.min(window.innerWidth / SLIDE_W, window.innerHeight / SLIDE_H);
   document.querySelector('.slide-frame').style.transform = `scale(${scale})`;
 }
-window.addEventListener('resize', scaleSlide);
+
+function updateArrows() {
+  document.querySelectorAll('.step-arrow').forEach(el => {
+    el.textContent = isMobile() ? '▼' : '▶';
+  });
+}
+
+window.addEventListener('resize', () => { scaleSlide(); updateArrows(); });
 scaleSlide();
+updateArrows();
 </script>
 </body>
 </html>
